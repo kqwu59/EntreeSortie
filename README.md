@@ -1,86 +1,46 @@
 # EntreeSortie
 
-EntreeSortie est une application de gestion des **nouveaux entrants** et des **partants** dans l'entreprise.
-L'objectif est d'orchestrer les actions entre les différents services pour éviter les oublis et fluidifier l'onboarding/offboarding.
+Version actuelle : **écran de déclaration unique** aligné sur le process métier (Étape 1 / Étape 2).
 
-## 🎯 Objectifs
+## ✅ Ce qui est implémenté
 
-- Centraliser les demandes d'arrivée et de départ.
-- Assurer le suivi des tâches par service.
-- Clarifier les responsabilités et les délais.
-- Garantir que chaque collaborateur dispose de ses accès, équipements et moyens physiques au bon moment.
+- Une seule page de déclaration (sans ancien écran workflow).
+- **Étape 1** avec sections « Réservé SRH » et « Réservé CDS ».
+- **Étape 2** avec cases de validation SRH/CDS.
+- Case **« Pas de date de fin »** :
+  - coche = la date de départ se vide et se grise,
+  - décoche = le champ redevient actif.
+- Validation : si « Pas de date de fin » n'est pas cochée, la date de départ est obligatoire.
+- Liste **Demandes enregistrées** visible sous le formulaire (stockée dans `localStorage`).
 
-## 👥 Services impliqués
+## 🚀 Lancer l'application
 
-### 1) Ressources Humaines (RH)
-Le service RH crée et maintient les informations collaborateur dans les outils RH :
-- Création du dossier collaborateur.
-- Saisie des informations contractuelles.
-- Déclaration de la date d'arrivée/de départ.
-- Transmission des données nécessaires aux autres services.
+### Windows (PowerShell)
+```powershell
+py -m http.server 8000
+```
+ou
+```powershell
+python -m http.server 8000
+```
 
-### 2) Affaires Générales
-Le service des affaires générales prépare l'environnement physique :
-- Attribution/préparation du bureau.
-- Remise des clés.
-- Création et remise du badge d'accès.
-- Vérification de la disponibilité logistique le jour J.
+### macOS / Linux
+```bash
+python3 -m http.server 8000
+```
 
-### 3) Service Informatique (IT)
-Le service informatique gère les éléments techniques :
-- Création/désactivation du compte Active Directory (AD).
-- Création des comptes applicatifs nécessaires.
-- Préparation de la machine (PC portable/fixe).
-- Préparation des périphériques (écran, clavier, etc.).
-- Vérification des droits d'accès et de la sécurité.
+Puis ouvrir `http://localhost:8000`.
 
-## 🔄 Processus cible
+## 🔄 Si vous voyez encore l'ancien affichage
 
-### Nouveau collaborateur (onboarding)
-1. RH crée une demande d'entrée avec les informations essentielles.
-2. La demande est automatiquement notifiée aux Affaires Générales et à l'IT.
-3. Chaque service voit ses tâches, ses échéances et son statut.
-4. Le manager (ou demandeur) suit l'avancement global depuis un tableau de bord.
-5. Le jour d'arrivée, tous les prérequis sont validés (bureau, badge, comptes, matériel).
+Faites un rechargement forcé du navigateur :
+- Windows/Linux : `Ctrl + F5`
+- Mac : `Cmd + Shift + R`
 
-### Collaborateur sortant (offboarding)
-1. RH crée une demande de sortie avec la date effective.
-2. Les Affaires Générales organisent la restitution des moyens physiques (clé, badge, bureau).
-3. L'IT planifie la désactivation des accès et la récupération du matériel.
-4. La clôture est réalisée lorsque toutes les tâches sont confirmées.
+## 🧪 Test manuel rapide
 
-## ✅ Fonctionnalités recommandées
-
-- Formulaire de création de demande (entrée/sortie).
-- Workflow de validation et d'assignation par service.
-- Statuts par tâche (À faire, En cours, Bloqué, Terminé).
-- Historique et journal d'audit.
-- Notifications automatiques (email/Teams/Slack).
-- Gestion des délais et alertes en cas de retard.
-- Tableaux de bord par service et vue globale.
-
-## 📌 Données minimales à collecter
-
-- Identité : nom, prénom, email, service.
-- Type de demande : Entrée / Sortie.
-- Date effective d'arrivée/de départ.
-- Manager responsable.
-- Besoins IT : matériel, logiciels, droits.
-- Besoins logistiques : bureau, badge, clé.
-
-## 🔐 Sécurité & conformité
-
-- Gestion des rôles (RH, AG, IT, manager, admin).
-- Traçabilité des actions (qui a fait quoi, quand).
-- Respect de la confidentialité des données RH.
-- Politique de conservation/suppression des données.
-
-## 🚀 Vision MVP (version simple)
-
-Pour démarrer rapidement :
-- 1 formulaire unique de demande.
-- 3 tableaux de tâches (RH, Affaires Générales, IT).
-- 1 vue de suivi globale.
-- Notifications automatiques à chaque changement de statut.
-
-Cette base permet de déployer un premier système utile, puis d'ajouter des règles métier plus avancées (validation manager, modèles par type de poste, automatisations AD, etc.).
+1. Créer une demande et cliquer **Enregistrer**.
+2. Vérifier qu'elle apparaît dans **Demandes enregistrées**.
+3. Cocher **Pas de date de fin** : la date de départ se grise.
+4. Décocher : la date de départ redevient saisissable.
+5. Cliquer **Vider la liste** pour remettre à zéro.

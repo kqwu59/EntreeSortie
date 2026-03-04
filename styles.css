@@ -1,0 +1,155 @@
+:root {
+  --bg: #f3f4f6;
+  --text: #1f2937;
+  --line: #d1d5db;
+  --stage1: #1473b8;
+  --stage2: #d9bf16;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+.page {
+  max-width: 980px;
+  margin: 1.2rem auto;
+  padding: 0 1rem 1.5rem;
+}
+
+.form-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.stage {
+  border: 4px solid var(--line);
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.stage legend {
+  margin: 0 auto;
+  font-size: 1.9rem;
+  font-weight: 700;
+  padding: 0 0.5rem;
+}
+
+.stage h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.stage-1 { border-color: var(--stage1); }
+.stage-2 { border-color: var(--stage2); }
+
+label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 1rem;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+}
+
+input:disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+small {
+  color: #4b5563;
+  font-size: 0.92rem;
+}
+
+.departure-row {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.check-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.check-inline input,
+.check-row input {
+  width: auto;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+button {
+  border: none;
+  background: #1d4ed8;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #334155;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.feedback {
+  margin: 0;
+  min-height: 1.25rem;
+  color: #14532d;
+}
+
+.saved {
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+
+.saved-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saved h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 0.65rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.45rem;
+  text-align: left;
+}
