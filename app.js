@@ -1,5 +1,17 @@
 const STORAGE_KEY = 'entree-sortie-declaration';
 
+const ARRIVAL_TEMPLATE = [
+  { actor: 'CdS', action: 'Prévoir', detail: 'Documents à remettre : organigramme, chartes...', due: 'Avant' },
+  { actor: 'CdS', action: 'Définir', detail: "Habilitations de l'agent dans IAM", due: 'Avant' },
+  { actor: 'CdS', action: 'Informer', detail: "Personnel de la structure de l'arrivée du nouvel agent", due: 'Pendant' },
+  { actor: 'SCMS', action: 'Prévoir', detail: "Mettre à jour l'organigramme", due: 'Après' },
+  { actor: 'SPPS', action: 'Prévoir', detail: 'Badge/code accès, clés de bureau', due: 'Avant' },
+  { actor: 'SRH', action: 'Transmettre', detail: 'Fiche de poste et règlement intérieur', due: 'Pendant' },
+  { actor: 'SSI', action: 'Prévoir', detail: 'Création compte utilisateur et liste de diffusion', due: 'Avant' },
+  { actor: 'SSI', action: 'Moyens mis à disposition', detail: 'Accréditer l’agent aux applications métiers', due: 'Pendant' },
+  { actor: 'SSI', action: 'Informer', detail: 'Accueil informatique et sécurité numérique', due: 'Pendant' },
+];
+
 const form = document.getElementById('declaration-form');
 const editingIdInput = document.getElementById('editingId');
 const noDepartureDate = document.getElementById('noDepartureDate');
@@ -9,6 +21,15 @@ const savedBody = document.getElementById('saved-body');
 const clearStorageButton = document.getElementById('clear-storage');
 const cancelEditButton = document.getElementById('cancel-edit');
 const submitButton = document.getElementById('submit-btn');
+
+function createArrivalChecklist() {
+  return ARRIVAL_TEMPLATE.map((item, index) => ({
+    id: crypto.randomUUID(),
+    order: index,
+    done: false,
+    ...item,
+  }));
+}
 
 function applyNoDepartureState() {
   const disabled = noDepartureDate.checked;
@@ -32,16 +53,6 @@ function saveDeclarations(items) {
 function formatDate(value) {
   if (!value) return '-';
   return new Date(value).toLocaleDateString('fr-FR');
-}
-
-function getStateLabel(item) {
-  const step2 = item.step2 || {};
-  const allDone =
-    step2.sirhusValidated &&
-    step2.resedaMailSent &&
-    step2.iamTagged &&
-    step2.preIamMatrixCompleted;
-  return allDone ? 'Terminé' : 'En cours';
 }
 
 function setFeedback(message, error = false) {
@@ -68,12 +79,6 @@ function fillFormForEdit(item) {
   form.team.value = item.team || '';
   form.role.value = item.role || '';
 
-  const step2 = item.step2 || {};
-  form.sirhusValidated.checked = Boolean(step2.sirhusValidated);
-  form.resedaMailSent.checked = Boolean(step2.resedaMailSent);
-  form.iamTagged.checked = Boolean(step2.iamTagged);
-  form.preIamMatrixCompleted.checked = Boolean(step2.preIamMatrixCompleted);
-
   applyNoDepartureState();
   submitButton.textContent = 'Mettre à jour';
   cancelEditButton.classList.remove('hidden');
@@ -97,8 +102,16 @@ function renderSavedDeclarations() {
       <td>${item.department || '-'}</td>
       <td>${formatDate(item.arrivalDate)}</td>
       <td>${item.noDepartureDate ? 'Pas de date de fin' : formatDate(item.departureDate)}</td>
-      <td>${getStateLabel(item)}</td>
-      <td><button type="button" class="secondary action-btn" data-edit-id="${item.id}">Reprendre</button></td>
+      <td>
+        <label class="check-inline">
+          <input type="checkbox" data-complete-id="${item.id}" ${item.arrivalCompleted ? 'checked' : ''} />
+          <span>Terminé</span>
+        </label>
+      </td>
+      <td>
+        <button type="button" class="secondary action-btn" data-edit-id="${item.id}">Reprendre</button>
+        <a class="link-btn" href="details.html?id=${item.id}">Ouvrir parcours</a>
+      </td>
     `;
     savedBody.appendChild(row);
   });
@@ -107,6 +120,17 @@ function renderSavedDeclarations() {
     button.addEventListener('click', () => {
       const target = declarations.find((item) => item.id === button.dataset.editId);
       if (target) fillFormForEdit(target);
+    });
+  });
+
+  document.querySelectorAll('[data-complete-id]').forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      const updated = loadDeclarations();
+      const idx = updated.findIndex((item) => item.id === checkbox.dataset.completeId);
+      if (idx < 0) return;
+      updated[idx].arrivalCompleted = checkbox.checked;
+      saveDeclarations(updated);
+      setFeedback('Statut arrivée mis à jour.');
     });
   });
 }
@@ -132,12 +156,8 @@ form.addEventListener('submit', (event) => {
     office: (data.get('office') || '').trim(),
     team: (data.get('team') || '').trim(),
     role: (data.get('role') || '').trim(),
-    step2: {
-      sirhusValidated: data.get('sirhusValidated') === 'on',
-      resedaMailSent: data.get('resedaMailSent') === 'on',
-      iamTagged: data.get('iamTagged') === 'on',
-      preIamMatrixCompleted: data.get('preIamMatrixCompleted') === 'on',
-    },
+    arrivalCompleted: false,
+    arrivalChecklist: createArrivalChecklist(),
   };
 
   if (!payload.noDepartureDate && !payload.departureDate) {
@@ -150,6 +170,10 @@ form.addEventListener('submit', (event) => {
 
   if (index >= 0) {
     payload.createdAt = existing[index].createdAt;
+    payload.arrivalCompleted = Boolean(existing[index].arrivalCompleted);
+    payload.arrivalChecklist = existing[index].arrivalChecklist?.length
+      ? existing[index].arrivalChecklist
+      : createArrivalChecklist();
     existing[index] = payload;
     setFeedback('Demande mise à jour.');
   } else {

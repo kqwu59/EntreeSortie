@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EntreeSortie — Déclaration</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <title>EntreeSortie — Étape 1</title>
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <main class="page">
@@ -61,30 +61,6 @@
           </label>
         </fieldset>
 
-        <fieldset class="stage stage-2">
-          <legend>Étape 2</legend>
-
-          <h2>Réservé SRH</h2>
-          <label class="check-row">
-            <input type="checkbox" name="sirhusValidated" />
-            <span>Status validé dans Sirhus</span>
-          </label>
-          <label class="check-row">
-            <input type="checkbox" name="resedaMailSent" />
-            <span>Mail d'implantation dans Reseda</span>
-          </label>
-
-          <h2>Réservé CDS</h2>
-          <label class="check-row">
-            <input type="checkbox" name="iamTagged" />
-            <span>IAM</span>
-          </label>
-          <label class="check-row">
-            <input type="checkbox" name="preIamMatrixCompleted" />
-            <span>Matrice pré-IAM remplie</span>
-          </label>
-        </fieldset>
-
         <div class="actions">
           <button type="submit" id="submit-btn">Enregistrer</button>
           <button type="button" id="cancel-edit" class="secondary hidden">Annuler la reprise</button>
@@ -94,7 +70,7 @@
 
       <section class="saved" aria-labelledby="saved-title">
         <div class="saved-head">
-          <h2 id="saved-title">Demandes enregistrées</h2>
+          <h2 id="saved-title">Demandes d'arrivée enregistrées</h2>
           <button id="clear-storage" type="button" class="secondary">Vider la liste</button>
         </div>
         <div class="table-wrap">
@@ -105,7 +81,7 @@
                 <th>Service</th>
                 <th>Date arrivée</th>
                 <th>Date départ</th>
-                <th>État</th>
+                <th>Terminer l'arrivée</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -115,6 +91,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=3"></script>
+    <script src="app.js?v=4"></script>
   </body>
 </html>
