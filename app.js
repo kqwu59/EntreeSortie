@@ -1,17 +1,18 @@
 const STORAGE_KEY = 'entree-sortie-declaration';
 
 const form = document.getElementById('declaration-form');
+const editingIdInput = document.getElementById('editingId');
 const noDepartureDate = document.getElementById('noDepartureDate');
 const departureDateInput = document.getElementById('departureDate');
 const feedback = document.getElementById('form-feedback');
 const savedBody = document.getElementById('saved-body');
 const clearStorageButton = document.getElementById('clear-storage');
+const cancelEditButton = document.getElementById('cancel-edit');
+const submitButton = document.getElementById('submit-btn');
 
 function applyNoDepartureState() {
   const disabled = noDepartureDate.checked;
-  if (disabled) {
-    departureDateInput.value = '';
-  }
+  if (disabled) departureDateInput.value = '';
   departureDateInput.disabled = disabled;
 }
 
@@ -33,12 +34,59 @@ function formatDate(value) {
   return new Date(value).toLocaleDateString('fr-FR');
 }
 
+function getStateLabel(item) {
+  const step2 = item.step2 || {};
+  const allDone =
+    step2.sirhusValidated &&
+    step2.resedaMailSent &&
+    step2.iamTagged &&
+    step2.preIamMatrixCompleted;
+  return allDone ? 'Terminé' : 'En cours';
+}
+
+function setFeedback(message, error = false) {
+  feedback.textContent = message;
+  feedback.style.color = error ? '#991b1b' : '#14532d';
+}
+
+function resetFormMode() {
+  editingIdInput.value = '';
+  submitButton.textContent = 'Enregistrer';
+  cancelEditButton.classList.add('hidden');
+}
+
+function fillFormForEdit(item) {
+  editingIdInput.value = item.id;
+  form.lastName.value = item.lastName || '';
+  form.firstName.value = item.firstName || '';
+  form.email.value = item.email || '';
+  form.department.value = item.department || '';
+  form.arrivalDate.value = item.arrivalDate || '';
+  form.departureDate.value = item.departureDate || '';
+  form.noDepartureDate.checked = Boolean(item.noDepartureDate);
+  form.office.value = item.office || '';
+  form.team.value = item.team || '';
+  form.role.value = item.role || '';
+
+  const step2 = item.step2 || {};
+  form.sirhusValidated.checked = Boolean(step2.sirhusValidated);
+  form.resedaMailSent.checked = Boolean(step2.resedaMailSent);
+  form.iamTagged.checked = Boolean(step2.iamTagged);
+  form.preIamMatrixCompleted.checked = Boolean(step2.preIamMatrixCompleted);
+
+  applyNoDepartureState();
+  submitButton.textContent = 'Mettre à jour';
+  cancelEditButton.classList.remove('hidden');
+  setFeedback(`Reprise de la demande pour ${item.firstName} ${item.lastName}.`);
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function renderSavedDeclarations() {
   const declarations = loadDeclarations();
   savedBody.innerHTML = '';
 
   if (declarations.length === 0) {
-    savedBody.innerHTML = '<tr><td colspan="5">Aucune demande enregistrée.</td></tr>';
+    savedBody.innerHTML = '<tr><td colspan="6">Aucune demande enregistrée.</td></tr>';
     return;
   }
 
@@ -49,9 +97,17 @@ function renderSavedDeclarations() {
       <td>${item.department || '-'}</td>
       <td>${formatDate(item.arrivalDate)}</td>
       <td>${item.noDepartureDate ? 'Pas de date de fin' : formatDate(item.departureDate)}</td>
-      <td>${new Date(item.createdAt).toLocaleString('fr-FR')}</td>
+      <td>${getStateLabel(item)}</td>
+      <td><button type="button" class="secondary action-btn" data-edit-id="${item.id}">Reprendre</button></td>
     `;
     savedBody.appendChild(row);
+  });
+
+  document.querySelectorAll('[data-edit-id]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = declarations.find((item) => item.id === button.dataset.editId);
+      if (target) fillFormForEdit(target);
+    });
   });
 }
 
@@ -62,8 +118,9 @@ form.addEventListener('submit', (event) => {
   applyNoDepartureState();
   const data = new FormData(form);
 
+  const currentId = data.get('editingId') || crypto.randomUUID();
   const payload = {
-    id: crypto.randomUUID(),
+    id: currentId,
     createdAt: new Date().toISOString(),
     lastName: (data.get('lastName') || '').trim(),
     firstName: (data.get('firstName') || '').trim(),
@@ -84,28 +141,45 @@ form.addEventListener('submit', (event) => {
   };
 
   if (!payload.noDepartureDate && !payload.departureDate) {
-    feedback.textContent = "Veuillez renseigner une date de départ ou cocher 'Pas de date de fin'.";
-    feedback.style.color = '#991b1b';
+    setFeedback("Veuillez renseigner une date de départ ou cocher 'Pas de date de fin'.", true);
     return;
   }
 
   const existing = loadDeclarations();
-  existing.unshift(payload);
-  saveDeclarations(existing);
+  const index = existing.findIndex((item) => item.id === currentId);
 
-  feedback.textContent = 'Déclaration enregistrée.';
-  feedback.style.color = '#14532d';
+  if (index >= 0) {
+    payload.createdAt = existing[index].createdAt;
+    existing[index] = payload;
+    setFeedback('Demande mise à jour.');
+  } else {
+    existing.unshift(payload);
+    setFeedback('Déclaration enregistrée.');
+  }
+
+  saveDeclarations(existing);
   form.reset();
+  resetFormMode();
   applyNoDepartureState();
   renderSavedDeclarations();
+});
+
+cancelEditButton.addEventListener('click', () => {
+  form.reset();
+  resetFormMode();
+  applyNoDepartureState();
+  setFeedback('Reprise annulée.');
 });
 
 clearStorageButton.addEventListener('click', () => {
   saveDeclarations([]);
   renderSavedDeclarations();
-  feedback.textContent = 'Liste vidée.';
-  feedback.style.color = '#14532d';
+  form.reset();
+  resetFormMode();
+  applyNoDepartureState();
+  setFeedback('Liste vidée.');
 });
 
+resetFormMode();
 applyNoDepartureState();
 renderSavedDeclarations();

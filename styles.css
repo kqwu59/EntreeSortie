@@ -79,7 +79,8 @@ small {
   gap: 0.4rem;
 }
 
-.check-inline {
+.check-inline,
+.check-row {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -90,10 +91,10 @@ small {
   width: auto;
 }
 
-.check-row {
+.actions {
   display: flex;
+  gap: 0.6rem;
   align-items: center;
-  gap: 0.4rem;
 }
 
 button {
@@ -110,6 +111,14 @@ button.secondary {
   background: #334155;
   padding: 0.45rem 0.8rem;
   font-size: 0.9rem;
+}
+
+button.action-btn {
+  padding: 0.35rem 0.55rem;
+}
+
+.hidden {
+  display: none;
 }
 
 .feedback {

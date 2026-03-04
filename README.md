@@ -1,6 +1,6 @@
 # EntreeSortie
 
-Version actuelle : **écran de déclaration unique** aligné sur le process métier (Étape 1 / Étape 2).
+Version actuelle : **écran de déclaration unique** aligné sur le process métier (Étape 1 / Étape 2) avec reprise d'une demande en cours.
 
 ## ✅ Ce qui est implémenté
 
@@ -12,6 +12,8 @@ Version actuelle : **écran de déclaration unique** aligné sur le process mét
   - décoche = le champ redevient actif.
 - Validation : si « Pas de date de fin » n'est pas cochée, la date de départ est obligatoire.
 - Liste **Demandes enregistrées** visible sous le formulaire (stockée dans `localStorage`).
+- Bouton **Reprendre** sur chaque ligne pour recharger une demande existante, compléter les cases restantes, puis **Mettre à jour**.
+- État d'avancement : **En cours** / **Terminé** selon les validations de l'étape 2.
 
 ## 🚀 Lancer l'application
 
@@ -41,6 +43,6 @@ Faites un rechargement forcé du navigateur :
 
 1. Créer une demande et cliquer **Enregistrer**.
 2. Vérifier qu'elle apparaît dans **Demandes enregistrées**.
-3. Cocher **Pas de date de fin** : la date de départ se grise.
-4. Décocher : la date de départ redevient saisissable.
-5. Cliquer **Vider la liste** pour remettre à zéro.
+3. Cliquer **Reprendre** sur la demande créée.
+4. Cocher des cases d'Étape 2 puis cliquer **Mettre à jour**.
+5. Vérifier le changement d'état (**En cours** vers **Terminé**) quand toutes les cases sont cochées.

@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EntreeSortie — Déclaration</title>
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <main class="page">
       <form id="declaration-form" class="form-layout">
+        <input type="hidden" id="editingId" name="editingId" />
+
         <fieldset class="stage stage-1">
           <legend>Étape 1</legend>
 
@@ -83,7 +85,10 @@
           </label>
         </fieldset>
 
-        <button type="submit">Enregistrer</button>
+        <div class="actions">
+          <button type="submit" id="submit-btn">Enregistrer</button>
+          <button type="button" id="cancel-edit" class="secondary hidden">Annuler la reprise</button>
+        </div>
         <p id="form-feedback" class="feedback" aria-live="polite"></p>
       </form>
 
@@ -100,7 +105,8 @@
                 <th>Service</th>
                 <th>Date arrivée</th>
                 <th>Date départ</th>
-                <th>Créée le</th>
+                <th>État</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody id="saved-body"></tbody>
@@ -109,6 +115,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=2"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
