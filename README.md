@@ -4,7 +4,8 @@ Version actuelle : **étape 1 de création** + **parcours d'arrivée détaillé 
 
 ## ✅ Ce qui est implémenté
 
-- La page principale contient uniquement l'**Étape 1** (SRH/CDS).
+- En haut de page: **uniquement les arrivées en cours** à traiter.
+- En bas de page: **historique des arrivées terminées**.
 - La case **« Pas de date de fin »** :
   - coche = date de départ vidée et grisée,
   - décoche = champ réactivé.

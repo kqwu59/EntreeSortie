@@ -233,3 +233,17 @@ th, td {
   text-align: left;
   vertical-align: top;
 }
+
+
+.saved-priority {
+  margin-top: 0;
+  border: 2px solid #93c5fd;
+}
+
+.saved-priority .list-title {
+  color: #0b3b7a;
+}
+
+.form-layout {
+  margin-top: 1rem;
+}
