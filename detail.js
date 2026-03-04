@@ -9,6 +9,7 @@ const textFilter = document.getElementById('text-filter');
 const statsEl = document.getElementById('stats');
 
 let currentRequest = null;
+const openActors = new Map();
 
 function loadDeclarations() {
   try {
@@ -85,7 +86,15 @@ function persistTaskState(taskId, checked) {
   currentRequest = declarations[idx];
 }
 
+function syncOpenActorsFromDom() {
+  document.querySelectorAll('details.category[data-actor]').forEach((detailsEl) => {
+    openActors.set(detailsEl.dataset.actor, detailsEl.open);
+  });
+}
+
 function renderCategories() {
+  syncOpenActorsFromDom();
+
   const list = currentRequest.arrivalChecklist || [];
   const filtered = getFilteredTasks(list);
   categoriesWrap.innerHTML = '';
@@ -97,13 +106,20 @@ function renderCategories() {
   }
 
   const grouped = groupByActor(filtered);
+  let hasAnySavedOpenState = [...grouped.keys()].some((actor) => openActors.has(actor));
   let isFirst = true;
 
   grouped.forEach((tasks, actor) => {
     const doneCount = tasks.filter((task) => task.done).length;
     const details = document.createElement('details');
     details.className = 'category';
-    details.open = isFirst;
+    details.dataset.actor = actor;
+
+    if (openActors.has(actor)) {
+      details.open = openActors.get(actor);
+    } else {
+      details.open = !hasAnySavedOpenState && isFirst;
+    }
     isFirst = false;
 
     details.innerHTML = `
@@ -137,6 +153,11 @@ function renderCategories() {
         </table>
       </div>
     `;
+
+    details.addEventListener('toggle', () => {
+      openActors.set(actor, details.open);
+    });
+
     categoriesWrap.appendChild(details);
   });
 
