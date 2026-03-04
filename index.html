@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntreeSortie — Gestion onboarding/offboarding</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>EntreeSortie</h1>
+      <p>Gestion des arrivées et départs collaborateurs (MVP)</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Créer une déclaration</h2>
+        <form id="request-form" class="grid-form">
+          <fieldset class="stage stage-1">
+            <legend>Étape 1 — Données dossier</legend>
+
+            <h3>Réservé SRH</h3>
+            <label>Nom
+              <input name="lastName" required />
+            </label>
+            <label>Prénom
+              <input name="firstName" required />
+            </label>
+            <label>Email
+              <input name="email" type="email" required />
+            </label>
+            <label>Service
+              <input name="department" required />
+            </label>
+            <label>Type de demande
+              <select name="requestType" required>
+                <option value="ENTRY">Entrée</option>
+                <option value="EXIT">Sortie</option>
+              </select>
+            </label>
+            <label>Date d'arrivée
+              <input name="arrivalDate" type="date" />
+            </label>
+            <label>Date de départ
+              <input name="departureDate" type="date" />
+            </label>
+            <label>Manager responsable
+              <input name="manager" required />
+            </label>
+
+            <h3>Réservé CDS</h3>
+            <label>Bureau
+              <input name="office" placeholder="Ex: Bureau SCMS (2ème étage)" />
+            </label>
+            <label>Pôle
+              <input name="team" placeholder="Ex: SI, Finance, RH..." />
+            </label>
+            <label>Fonction
+              <input name="role" placeholder="Ex: Stagiaire, Responsable..." />
+            </label>
+          </fieldset>
+
+          <fieldset class="stage stage-2">
+            <legend>Étape 2 — Validations</legend>
+
+            <h3>Réservé SRH</h3>
+            <label class="check-row">
+              <input type="checkbox" name="sirhusValidated" />
+              <span>Status validé dans Sirhus</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="resedaMailSent" />
+              <span>Mail d'implantation dans Reseda</span>
+            </label>
+
+            <h3>Réservé CDS</h3>
+            <label class="check-row">
+              <input type="checkbox" name="iamTagged" />
+              <span>Tagger dans IAM</span>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="preIamMatrixCompleted" />
+              <span>Matrice pré-IAM remplie</span>
+            </label>
+          </fieldset>
+
+          <label>Besoins IT
+            <textarea name="itNeeds" rows="2" placeholder="Matériel, logiciels, droits..."></textarea>
+          </label>
+          <label>Besoins logistiques
+            <textarea name="logisticsNeeds" rows="2" placeholder="Bureau, badge, clé..."></textarea>
+          </label>
+          <button type="submit">Créer la demande</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Vue globale</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Collaborateur</th>
+                <th>Type</th>
+                <th>Pôle / Fonction</th>
+                <th>Dates</th>
+                <th>Progression</th>
+              </tr>
+            </thead>
+            <tbody id="global-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Tâches RH</h2>
+        <div id="tasks-rh" class="task-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Tâches Affaires Générales</h2>
+        <div id="tasks-ag" class="task-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Tâches IT</h2>
+        <div id="tasks-it" class="task-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Notifications</h2>
+        <ul id="notifications" class="notifications"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

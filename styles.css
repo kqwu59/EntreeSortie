@@ -1,0 +1,142 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --line: #dde4f0;
+  --text: #1f2a3d;
+  --primary: #1d4ed8;
+  --stage-1: #0d6fb8;
+  --stage-2: #d4b106;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero {
+  background: linear-gradient(120deg, #1d4ed8, #2563eb);
+  color: white;
+  padding: 1.2rem 1.5rem;
+}
+
+.hero h1 { margin: 0; }
+.hero p { margin: 0.35rem 0 0; }
+
+.layout {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.grid-form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.stage {
+  border: 3px solid var(--line);
+  border-radius: 10px;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.stage legend {
+  font-weight: 700;
+  padding: 0 0.4rem;
+}
+
+.stage h3 {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+}
+
+.stage-1 { border-color: var(--stage-1); }
+.stage-2 { border-color: var(--stage-2); }
+
+label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.check-row {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+input, select, textarea, button {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  padding: 0.45rem;
+  font-size: 0.9rem;
+}
+
+.task-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.task-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.task-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  background: #e2e8f0;
+  font-size: 0.75rem;
+}
+
+.notifications {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+small.muted { color: #64748b; }
