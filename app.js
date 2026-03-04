@@ -1,15 +1,28 @@
 const STORAGE_KEY = 'entree-sortie-declaration';
 
 const ARRIVAL_TEMPLATE = [
-  { actor: 'CdS', action: 'Prévoir', detail: 'Documents à remettre : organigramme, chartes...', due: 'Avant' },
-  { actor: 'CdS', action: 'Définir', detail: "Habilitations de l'agent dans IAM", due: 'Avant' },
-  { actor: 'CdS', action: 'Informer', detail: "Personnel de la structure de l'arrivée du nouvel agent", due: 'Pendant' },
+  { actor: 'CdS', action: 'Prévoir', detail: 'Documents à remettre : organigramme, chartes, documents actualisés', due: 'Avant' },
+  { actor: 'CdS', action: 'Définir', detail: "Habilitations de l'agent dans IAM (pré-IAM BFC)", due: 'Avant' },
+  { actor: 'CdS', action: 'Informer', detail: "Informer la structure de l'arrivée du nouvel agent", due: 'Pendant' },
+  { actor: 'CdS', action: 'Planifier', detail: 'Présentation aux membres de la structure', due: 'Pendant' },
+  { actor: 'CdS', action: 'Réaliser', detail: 'Point de démarrage + validation contrat de travail', due: 'Pendant' },
+  { actor: 'CdS', action: 'Planifier', detail: 'Visites des locaux / services', due: 'Pendant' },
   { actor: 'SCMS', action: 'Prévoir', detail: "Mettre à jour l'organigramme", due: 'Après' },
-  { actor: 'SPPS', action: 'Prévoir', detail: 'Badge/code accès, clés de bureau', due: 'Avant' },
-  { actor: 'SRH', action: 'Transmettre', detail: 'Fiche de poste et règlement intérieur', due: 'Pendant' },
-  { actor: 'SSI', action: 'Prévoir', detail: 'Création compte utilisateur et liste de diffusion', due: 'Avant' },
+  { actor: 'SPPS', action: 'Prévoir', detail: 'Badge / code accès + clés de bureau', due: 'Avant' },
+  { actor: 'SPPS', action: 'Moyens mis à disposition', detail: 'Badge et/ou code accès remis', due: 'Pendant' },
+  { actor: 'SPPS', action: 'Moyens mis à disposition', detail: 'Clés de bureau remises', due: 'Pendant' },
+  { actor: 'SRH', action: 'Prévoir', detail: 'Carte de restauration', due: 'Avant' },
+  { actor: 'SRH', action: 'Transmission de documents', detail: 'Fiche de poste', due: 'Pendant' },
+  { actor: 'SRH', action: 'Transmission de documents', detail: 'Organigramme', due: 'Pendant' },
+  { actor: 'SRH', action: 'Définir', detail: 'Paramétrages outils RH temporaires', due: 'Pendant' },
+  { actor: 'SRH', action: 'Transmission de documents', detail: 'Règlement intérieur', due: 'Pendant' },
+  { actor: 'SRH', action: 'Prévoir', detail: 'Visite médicale / médecine de prévention', due: 'Après' },
+  { actor: 'SSI', action: 'Prévoir', detail: 'Accès et listes de diffusion', due: 'Avant' },
+  { actor: 'SSI', action: 'Prévoir', detail: 'Création du compte utilisateur', due: 'Avant' },
   { actor: 'SSI', action: 'Moyens mis à disposition', detail: 'Accréditer l’agent aux applications métiers', due: 'Pendant' },
-  { actor: 'SSI', action: 'Informer', detail: 'Accueil informatique et sécurité numérique', due: 'Pendant' },
+  { actor: 'SSI', action: 'Informer', detail: 'Accueil informatique + charte informatique', due: 'Pendant' },
+  { actor: 'SSI', action: 'Informer', detail: 'Sensibilisation sécurité informatique', due: 'Pendant' },
+  { actor: 'SSI', action: 'Réaliser', detail: 'Installation poste, messagerie et outils collaboratifs', due: 'Pendant' },
 ];
 
 const form = document.getElementById('declaration-form');

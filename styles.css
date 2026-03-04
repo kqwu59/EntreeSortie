@@ -3,13 +3,14 @@
   --text: #1f2937;
   --line: #d1d5db;
   --stage1: #1473b8;
+  --accent: #2563eb;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(circle at top right, #eef6ff, var(--bg));
   color: var(--text);
   font-family: Arial, sans-serif;
 }
@@ -31,6 +32,7 @@ body {
   padding: 1rem;
   display: grid;
   gap: 0.55rem;
+  border-radius: 12px;
 }
 
 .stage legend {
@@ -52,11 +54,13 @@ label {
   font-size: 1rem;
 }
 
-input {
+input,
+select {
   width: 100%;
   border: 1px solid var(--line);
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem 0.55rem;
   font-size: 1rem;
+  border-radius: 8px;
 }
 
 input:disabled {
@@ -65,7 +69,8 @@ input:disabled {
   cursor: not-allowed;
 }
 
-small {
+small,
+.muted {
   color: #4b5563;
   font-size: 0.92rem;
 }
@@ -96,9 +101,9 @@ small {
 button,
 .link-btn {
   border: none;
-  background: #1d4ed8;
+  background: var(--accent);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0.55rem 0.9rem;
   font-size: 0.9rem;
   cursor: pointer;
@@ -128,8 +133,13 @@ button.action-btn {
   margin-top: 1rem;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.8rem;
+  border-radius: 12px;
+  padding: 0.95rem;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.08);
+}
+
+.hero-panel {
+  background: linear-gradient(165deg, #ffffff, #f8fbff);
 }
 
 .saved-head {
@@ -143,6 +153,56 @@ button.action-btn {
 .saved h1 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.stats {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  background: #dbeafe;
+  color: #1e3a8a;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.filters {
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.category {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0.65rem;
+}
+
+.category summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  background: #eff6ff;
+  font-weight: 600;
+}
+
+.category summary::-webkit-details-marker {
+  display: none;
+}
+
+.category-count {
+  font-size: 0.85rem;
+  color: #1d4ed8;
 }
 
 .table-wrap {

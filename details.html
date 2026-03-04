@@ -4,37 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EntreeSortie — Parcours d'arrivée</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
     <main class="page">
-      <section class="saved">
+      <section class="saved hero-panel">
         <div class="saved-head">
           <h1 id="arrival-title">Parcours d'arrivée</h1>
           <a href="index.html" class="link-btn">← Retour</a>
         </div>
         <p id="arrival-meta" class="feedback"></p>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="filters">
+          <label>
+            Acteur
+            <select id="actor-filter"></select>
+          </label>
+          <label>
+            Échéance
+            <select id="due-filter"></select>
+          </label>
+          <label>
+            Recherche
+            <input id="text-filter" type="text" placeholder="Ex: badge, IAM, organigramme..." />
+          </label>
+        </div>
       </section>
 
       <section class="saved">
-        <h2>Checklist d'arrivée</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Fait</th>
-                <th>Acteur</th>
-                <th>Action</th>
-                <th>Détail</th>
-                <th>Échéance</th>
-              </tr>
-            </thead>
-            <tbody id="tasks-body"></tbody>
-          </table>
-        </div>
+        <h2>Checklist d'arrivée (par catégorie)</h2>
+        <p class="muted">Astuce: les catégories sont repliables pour garder une vue lisible.</p>
+        <div id="categories-wrap"></div>
       </section>
     </main>
 
-    <script src="detail.js?v=4"></script>
+    <script src="detail.js?v=5"></script>
   </body>
 </html>

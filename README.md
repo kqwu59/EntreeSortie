@@ -1,20 +1,22 @@
 # EntreeSortie
 
-Version actuelle : **étape 1 de création** + **parcours d'arrivée détaillé**.
+Version actuelle : **étape 1 de création** + **parcours d'arrivée détaillé avec filtres par catégories**.
 
 ## ✅ Ce qui est implémenté
 
 - La page principale contient uniquement l'**Étape 1** (SRH/CDS).
-- L'ancienne étape 2 de la page principale a été supprimée.
-- La case **« Pas de date de fin »** garde son comportement :
+- La case **« Pas de date de fin »** :
   - coche = date de départ vidée et grisée,
-  - décoche = champ date de départ réactivé.
-- Liste des demandes d'arrivée enregistrées (`localStorage`).
-- Pour chaque demande :
-  - **Reprendre** la demande (modification des infos étape 1),
-  - **Ouvrir parcours** vers une page dédiée de checklist d'arrivée,
-  - case **Terminer l'arrivée** directement sur la page principale.
-- La page `details.html` affiche le parcours/checklist (par acteur) et mémorise les cases cochées.
+  - décoche = champ réactivé.
+- Liste des demandes d'arrivée enregistrées (`localStorage`) avec :
+  - **Reprendre** la demande,
+  - **Ouvrir parcours**.
+  - case **Terminer l'arrivée**.
+- Page `details.html` modernisée :
+  - checklist d'arrivée enrichie (plus de tâches, acteurs CdS/SCMS/SPPS/SRH/SSI),
+  - **filtres par catégories** (acteur + échéance + recherche texte),
+  - **catégories repliables** (non toutes ouvertes en même temps),
+  - badges de progression visuels.
 
 ## 🚀 Lancer l'application
 
@@ -37,7 +39,7 @@ Puis ouvrir `http://localhost:8000`.
 ## 🧪 Test manuel rapide
 
 1. Créer une demande d'arrivée depuis `index.html`.
-2. Dans le tableau, cliquer **Ouvrir parcours**.
-3. Cocher/décocher des actions dans `details.html`.
-4. Revenir à l'accueil : la demande peut être marquée via **Terminer l'arrivée**.
-5. Cliquer **Reprendre** pour modifier la demande initiale sans créer de doublon.
+2. Cliquer **Ouvrir parcours**.
+3. Filtrer par acteur/échéance/recherche texte et vérifier l'affichage.
+4. Ouvrir une catégorie, cocher des tâches, vérifier la progression.
+5. Revenir à l'accueil, cocher **Terminer l'arrivée** si besoin.
