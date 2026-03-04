@@ -88,6 +88,103 @@
       </form>
     </main>
 
+    <title>EntreeSortie - MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>EntreeSortie</h1>
+      <p>Gestion onboarding / offboarding - MVP</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Créer une demande</h2>
+        <form id="requestForm">
+          <div class="grid">
+            <label>
+              Type de demande
+              <select name="type" required>
+                <option value="ENTREE">Entrée</option>
+                <option value="SORTIE">Sortie</option>
+              </select>
+            </label>
+            <label>
+              Date effective
+              <input type="date" name="effectiveDate" required />
+            </label>
+            <label>
+              Nom
+              <input type="text" name="lastName" required />
+            </label>
+            <label>
+              Prénom
+              <input type="text" name="firstName" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Service
+              <input type="text" name="department" required />
+            </label>
+            <label>
+              Manager
+              <input type="text" name="manager" required />
+            </label>
+          </div>
+
+          <label>
+            Besoins IT (matériel, logiciels, droits)
+            <textarea name="itNeeds" rows="3"></textarea>
+          </label>
+          <label>
+            Besoins logistiques (bureau, badge, clé)
+            <textarea name="logisticsNeeds" rows="3"></textarea>
+          </label>
+
+          <button type="submit">Créer la demande</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Vue globale</h2>
+        <div id="globalTable"></div>
+      </section>
+
+      <section class="card">
+        <h2>Tableaux par service</h2>
+        <div class="boards" id="boards"></div>
+      </section>
+
+      <section class="card">
+        <h2>Notifications automatiques</h2>
+        <ul id="notifications"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Journal d'audit</h2>
+        <ul id="auditLog"></ul>
+      </section>
+    </main>
+
+    <template id="taskTemplate">
+      <article class="task-item">
+        <h4></h4>
+        <p class="meta"></p>
+        <label>
+          Statut
+          <select class="statusSelect">
+            <option value="A_FAIRE">À faire</option>
+            <option value="EN_COURS">En cours</option>
+            <option value="BLOQUE">Bloqué</option>
+            <option value="TERMINE">Terminé</option>
+          </select>
+        </label>
+      </article>
+    </template>
+
     <script src="app.js"></script>
   </body>
 </html>
