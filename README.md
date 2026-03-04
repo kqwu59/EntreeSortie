@@ -49,38 +49,27 @@ Le service informatique gère les éléments techniques :
 3. L'IT planifie la désactivation des accès et la récupération du matériel.
 4. La clôture est réalisée lorsque toutes les tâches sont confirmées.
 
-## ✅ Fonctionnalités recommandées
+## ✅ Fonctionnalités implémentées (MVP)
 
-- Formulaire de création de demande (entrée/sortie).
-- Workflow de validation et d'assignation par service.
-- Statuts par tâche (À faire, En cours, Bloqué, Terminé).
-- Historique et journal d'audit.
-- Notifications automatiques (email/Teams/Slack).
-- Gestion des délais et alertes en cas de retard.
-- Tableaux de bord par service et vue globale.
+- Formulaire unique de création de demande (entrée/sortie).
+- Données minimales collectées : identité, manager, date effective, besoins IT/logistiques.
+- Génération automatique des tâches RH / Affaires Générales / IT.
+- Statuts par tâche : À faire, En cours, Bloqué, Terminé.
+- Vue globale avec progression de traitement.
+- Tableaux de tâches par service.
+- Notifications automatiques à chaque création/mise à jour.
+- Journal d'audit horodaté.
+- Sauvegarde locale (`localStorage`) pour conserver les données entre rechargements.
 
-## 📌 Données minimales à collecter
+## 🚀 Lancer l'application
 
-- Identité : nom, prénom, email, service.
-- Type de demande : Entrée / Sortie.
-- Date effective d'arrivée/de départ.
-- Manager responsable.
-- Besoins IT : matériel, logiciels, droits.
-- Besoins logistiques : bureau, badge, clé.
+Aucune dépendance n'est nécessaire.
 
-## 🔐 Sécurité & conformité
+1. Ouvrir `index.html` dans un navigateur, ou
+2. Lancer un petit serveur local :
 
-- Gestion des rôles (RH, AG, IT, manager, admin).
-- Traçabilité des actions (qui a fait quoi, quand).
-- Respect de la confidentialité des données RH.
-- Politique de conservation/suppression des données.
+```bash
+python3 -m http.server 8000
+```
 
-## 🚀 Vision MVP (version simple)
-
-Pour démarrer rapidement :
-- 1 formulaire unique de demande.
-- 3 tableaux de tâches (RH, Affaires Générales, IT).
-- 1 vue de suivi globale.
-- Notifications automatiques à chaque changement de statut.
-
-Cette base permet de déployer un premier système utile, puis d'ajouter des règles métier plus avancées (validation manager, modèles par type de poste, automatisations AD, etc.).
+Puis ouvrir `http://localhost:8000`.
