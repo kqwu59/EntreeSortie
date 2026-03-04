@@ -30,7 +30,8 @@ const editingIdInput = document.getElementById('editingId');
 const noDepartureDate = document.getElementById('noDepartureDate');
 const departureDateInput = document.getElementById('departureDate');
 const feedback = document.getElementById('form-feedback');
-const savedBody = document.getElementById('saved-body');
+const savedBodyActive = document.getElementById('saved-body-active');
+const savedBodyDone = document.getElementById('saved-body-done');
 const clearStorageButton = document.getElementById('clear-storage');
 const cancelEditButton = document.getElementById('cancel-edit');
 const submitButton = document.getElementById('submit-btn');
@@ -101,14 +102,20 @@ function fillFormForEdit(item) {
 
 function renderSavedDeclarations() {
   const declarations = loadDeclarations();
-  savedBody.innerHTML = '';
+  savedBodyActive.innerHTML = '';
+  savedBodyDone.innerHTML = '';
 
   if (declarations.length === 0) {
-    savedBody.innerHTML = '<tr><td colspan="6">Aucune demande enregistrée.</td></tr>';
+    const empty = '<tr><td colspan="6">Aucune demande enregistrée.</td></tr>';
+    savedBodyActive.innerHTML = empty;
+    savedBodyDone.innerHTML = empty;
     return;
   }
 
-  declarations.forEach((item) => {
+  const active = declarations.filter((item) => !item.arrivalCompleted);
+  const done = declarations.filter((item) => item.arrivalCompleted);
+
+  const renderRow = (item, targetBody) => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${item.firstName} ${item.lastName}</td>
@@ -126,8 +133,20 @@ function renderSavedDeclarations() {
         <a class="link-btn" href="details.html?id=${item.id}">Ouvrir parcours</a>
       </td>
     `;
-    savedBody.appendChild(row);
-  });
+    targetBody.appendChild(row);
+  };
+
+  if (active.length === 0) {
+    savedBodyActive.innerHTML = '<tr><td colspan="6">Aucune demande en cours.</td></tr>';
+  } else {
+    active.forEach((item) => renderRow(item, savedBodyActive));
+  }
+
+  if (done.length === 0) {
+    savedBodyDone.innerHTML = '<tr><td colspan="6">Aucune demande terminée.</td></tr>';
+  } else {
+    done.forEach((item) => renderRow(item, savedBodyDone));
+  }
 
   document.querySelectorAll('[data-edit-id]').forEach((button) => {
     button.addEventListener('click', () => {

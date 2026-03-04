@@ -8,7 +8,9 @@ Version actuelle : **étape 1 de création** + **parcours d'arrivée détaillé 
 - La case **« Pas de date de fin »** :
   - coche = date de départ vidée et grisée,
   - décoche = champ réactivé.
-- Liste des demandes d'arrivée enregistrées (`localStorage`) avec :
+- Liste des demandes d'arrivée enregistrées (`localStorage`) avec tri visuel :
+  - **En cours** en haut,
+  - **Terminées** en bas.
   - **Reprendre** la demande,
   - **Ouvrir parcours**.
   - case **Terminer l'arrivée**.

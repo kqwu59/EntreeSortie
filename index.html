@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EntreeSortie — Étape 1</title>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <main class="page">
@@ -73,6 +73,8 @@
           <h2 id="saved-title">Demandes d'arrivée enregistrées</h2>
           <button id="clear-storage" type="button" class="secondary">Vider la liste</button>
         </div>
+
+        <h3 class="list-title">En cours</h3>
         <div class="table-wrap">
           <table>
             <thead>
@@ -85,12 +87,29 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="saved-body"></tbody>
+            <tbody id="saved-body-active"></tbody>
+          </table>
+        </div>
+
+        <h3 class="list-title done">Terminées</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Service</th>
+                <th>Date arrivée</th>
+                <th>Date départ</th>
+                <th>Terminer l'arrivée</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="saved-body-done"></tbody>
           </table>
         </div>
       </section>
     </main>
 
-    <script src="app.js?v=5"></script>
+    <script src="app.js?v=6"></script>
   </body>
 </html>
