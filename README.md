@@ -1,48 +1,35 @@
 # EntreeSortie
 
-Version actuelle : **étape 1 de création** + **parcours d'arrivée détaillé avec filtres par catégories**.
+Prototype d'interface moderne pour gérer les **nouveaux entrants** et les **partants**.
 
-## ✅ Ce qui est implémenté
+## Aperçu
 
-- En haut de page: **uniquement les arrivées en cours** à traiter.
-- En bas de page: **historique des arrivées terminées**.
-- La case **« Pas de date de fin »** :
-  - coche = date de départ vidée et grisée,
-  - décoche = champ réactivé.
-- Liste des demandes d'arrivée enregistrées (`localStorage`) avec tri visuel :
-  - **En cours** en haut,
-  - **Terminées** en bas.
-  - **Reprendre** la demande,
-  - **Ouvrir parcours**.
-  - case **Terminer l'arrivée**.
-- Page `details.html` modernisée :
-  - checklist d'arrivée enrichie (plus de tâches, acteurs CdS/SCMS/SPPS/SRH/SSI),
-  - **filtres par catégories** (acteur + échéance + recherche texte),
-  - **catégories repliables** (non toutes ouvertes en même temps),
-  - badges de progression visuels.
+Cette interface est inspirée d'un dashboard "Employee Lifecycle" avec :
+- un menu latéral,
+- un formulaire collaborateur,
+- un suivi des tâches par service (RH / Affaires Générales / IT),
+- des cartes de progression.
 
-## 🚀 Lancer l'application
+## Lancer le prototype
 
-### Windows (PowerShell)
-```powershell
-py -m http.server 8000
-```
-ou
-```powershell
-python -m http.server 8000
-```
+Comme il s'agit d'un prototype statique, il suffit d'ouvrir `index.html` dans votre navigateur.
 
-### macOS / Linux
+Option simple en local :
+
 ```bash
 python3 -m http.server 8000
 ```
 
-Puis ouvrir `http://localhost:8000`.
+Puis ouvrir : `http://localhost:8000`.
 
-## 🧪 Test manuel rapide
+## Structure
 
-1. Créer une demande d'arrivée depuis `index.html`.
-2. Cliquer **Ouvrir parcours**.
-3. Filtrer par acteur/échéance/recherche texte et vérifier l'affichage.
-4. Ouvrir une catégorie, cocher des tâches, vérifier la progression.
-5. Revenir à l'accueil, cocher **Terminer l'arrivée** si besoin.
+- `index.html` : structure de l'interface.
+- `styles.css` : styles et responsive design.
+
+## Évolutions possibles
+
+- Ajouter une API backend (Node, Python, etc.).
+- Connecter les tâches à une base de données.
+- Ajouter l'authentification et la gestion des rôles.
+- Ajouter des notifications (email / Teams / Slack).
