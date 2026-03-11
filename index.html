@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntreeSortie - Lifecycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">ES</div>
+        <nav>
+          <a class="nav-item active" href="#">Dashboard</a>
+          <a class="nav-item" href="#">Nouveau entrant</a>
+          <a class="nav-item" href="#">Nouveau sortant</a>
+          <a class="nav-item" href="#">Départs</a>
+          <a class="nav-item" href="#">Paramètres</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <h1>Employee Lifecycle Management</h1>
+          <div class="top-actions">
+            <input type="search" placeholder="Rechercher un collaborateur" />
+            <button class="btn btn-secondary">Ajouter entrant</button>
+            <button class="btn btn-primary">Ajouter sortant</button>
+          </div>
+        </header>
+
+        <section class="grid-two">
+          <article class="card">
+            <h2>Détails collaborateur</h2>
+            <form class="employee-form">
+              <label>
+                Nom
+                <input type="text" placeholder="Nom et prénom" />
+              </label>
+              <label>
+                Email
+                <input type="email" placeholder="nom@entreprise.fr" />
+              </label>
+              <label>
+                Service
+                <select>
+                  <option>Ressources Humaines</option>
+                  <option>Affaires Générales</option>
+                  <option>Informatique</option>
+                </select>
+              </label>
+              <label>
+                Bureau
+                <input type="text" placeholder="Bâtiment / étage / bureau" />
+              </label>
+              <label>
+                Date d'arrivée
+                <input type="date" />
+              </label>
+              <label>
+                Date de départ
+                <input type="date" />
+              </label>
+            </form>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h2>Tâches Onboarding / Offboarding</h2>
+              <div class="tabs">
+                <button class="tab active">Onboarding</button>
+                <button class="tab">Départ</button>
+              </div>
+            </div>
+
+            <div class="task-group">
+              <h3>IT</h3>
+              <ul>
+                <li>
+                  <span>Créer le compte AD</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+                <li>
+                  <span>Préparer le poste et l'écran</span>
+                  <span class="badge progress">In progress</span>
+                </li>
+                <li>
+                  <span>Configurer les accès applicatifs</span>
+                  <span class="badge done">Done</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="task-group">
+              <h3>Affaires Générales</h3>
+              <ul>
+                <li>
+                  <span>Préparer bureau et mobilier</span>
+                  <span class="badge progress">In progress</span>
+                </li>
+                <li>
+                  <span>Badge + clé d'accès</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="task-group">
+              <h3>RH</h3>
+              <ul>
+                <li>
+                  <span>Créer dossier dans les outils RH</span>
+                  <span class="badge done">Done</span>
+                </li>
+                <li>
+                  <span>Valider date d'arrivée contractuelle</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard">
+          <h2>Suivi d'avancement</h2>
+          <div class="stats-grid">
+            <article class="mini-card">
+              <h4>Tere Merice</h4>
+              <p>Service IT</p>
+              <div class="progressbar"><span style="width: 74%"></span></div>
+              <small>74% des tâches terminées</small>
+            </article>
+            <article class="mini-card">
+              <h4>Seir Dianch</h4>
+              <p>Service AG</p>
+              <div class="progressbar"><span style="width: 58%"></span></div>
+              <small>58% des tâches terminées</small>
+            </article>
+            <article class="mini-card">
+              <h4>Satke Mah</h4>
+              <p>Service RH</p>
+              <div class="progressbar"><span style="width: 92%"></span></div>
+              <small>92% des tâches terminées</small>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
