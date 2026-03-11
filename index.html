@@ -11,11 +11,189 @@
   </head>
   <body>
     <div class="app-shell">
+    <div class="app">
+      <aside class="sidebar">
+        <div class="logo">ES</div>
+        <h2>EntreeSortie</h2>
+        <p>Lifecycle Dashboard</p>
+        <nav>
+          <a class="active" href="#">🏠 Tableau de bord</a>
+          <a href="#">👥 Agents</a>
+          <a href="#">📥 Arrivées</a>
+          <a href="#">📤 Départs</a>
+          <a href="#">⚙️ Paramètres</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar card">
+          <div>
+            <h1>Dashboard RH / AG / IT</h1>
+            <span>Vue synthétique de l'onboarding / offboarding</span>
+    <title>EntreeSortie — Dashboard simple</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>EntreeSortie — Arrivées / Départs</h1>
+        <p>Saisie simplifiée + suivi des demandes en cours</p>
+      </header>
+
+      <section class="stats-grid">
+        <article class="card stat">
+          <h2>Délai moyen activation IT</h2>
+          <p>+1,8 jours</p>
+        </article>
+        <article class="card stat">
+          <h2>Demandes en retard</h2>
+          <p>7 dossiers</p>
+        </article>
+        <article class="card stat">
+          <h2>Taux prêt le jour J</h2>
+          <p>91%</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>Nouvel arrivé</h2>
+        <p class="muted">Bloc élargi : informations RH de base (sans email).</p>
+
+        <form class="form-grid">
+          <label>Nom
+            <input type="text" placeholder="Nom" />
+          </label>
+
+          <label>Prénom
+            <input type="text" placeholder="Prénom" />
+          </label>
+
+          <label>Service
+            <input type="text" placeholder="Service (saisie libre)" />
+          </label>
+
+          <label>Manager
+            <input type="text" placeholder="Nom du manager" />
+          </label>
+
+          <label>Date d'arrivée
+            <input type="date" />
+          </label>
+
+          <label>Type de contrat
+            <select>
+              <option>Fonctionnaire</option>
+              <option>CDD</option>
+              <option>Stagiaire</option>
+              <option>Apprenti</option>
+              <option>CDI</option>
+              <option>Autre</option>
+            </select>
+          </label>
+
+          <label>Date de fin de contrat
+            <input type="date" />
+          </label>
+
+          <label>Site / Bureau
+            <input type="text" placeholder="Site - Bureau" />
+          </label>
+        </form>
+
+        <div class="actions">
+          <button class="btn">Enregistrer l'arrivée</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Arrivées en cours</h2>
+          <a href="#actions-services">Voir les actions par service</a>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Agent</th>
+              <th>Service</th>
+              <th>Date arrivée</th>
+              <th>Contrat</th>
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Amine L.</td>
+              <td>Informatique</td>
+              <td>18/06/2026</td>
+              <td>CDD</td>
+              <td><span class="tag pending">En cours</span></td>
+              <td><a href="#actions-services">Ouvrir</a></td>
+            </tr>
+            <tr>
+              <td>Claire M.</td>
+              <td>RH</td>
+              <td>19/06/2026</td>
+              <td>Fonctionnaire</td>
+              <td><span class="tag late">En retard</span></td>
+              <td><a href="#actions-services">Ouvrir</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" id="actions-services">
+        <h2>Actions à réaliser par service</h2>
+
+        <div class="service-grid">
+          <article>
+            <h3>RH</h3>
+            <ul>
+              <li>Créer le dossier RH</li>
+              <li>Renseigner l'email professionnel (étape 2)</li>
+              <li>Valider le type de contrat et la date de fin</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>Affaires Générales</h3>
+            <ul>
+              <li>Préparer bureau physique</li>
+              <li>Préparer badge d'accès</li>
+              <li>Préparer clé si nécessaire</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>Informatique</h3>
+            <ul>
+              <li>Créer le compte AD</li>
+              <li>Préparer machine et écrans</li>
+              <li>Attribuer droits applicatifs</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <title>EntreeSortie V2 — Dashboard Premium</title>
+    <title>EntreeSortie - Lifecycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="layout">
       <aside class="sidebar">
         <div class="brand">
           <div class="brand-logo">ES</div>
           <div>
             <h2>EntreeSortie</h2>
+            <strong>EntreeSortie</strong>
             <p>Lifecycle Dashboard</p>
           </div>
         </div>
@@ -35,6 +213,10 @@
           <div>
             <h1>Dashboard RH / AG / IT</h1>
             <p>Pilotage des entrées et des sorties</p>
+        <header class="topbar card">
+          <div>
+            <h1>Dashboard RH / AG / IT</h1>
+            <p>Gestion des nouveaux entrants et des départs</p>
           </div>
           <input type="search" placeholder="Rechercher un agent, un service..." />
         </header>
