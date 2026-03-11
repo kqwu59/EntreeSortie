@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntreeSortie V2 — Dashboard Premium</title>
     <title>EntreeSortie - Lifecycle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +16,19 @@
   <body>
     <div class="app-shell">
       <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-logo">ES</div>
+          <div>
+            <strong>EntreeSortie</strong>
+            <p>Lifecycle Console</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" data-view="arrivee">Enregistrer un nouvel arrivé</button>
+          <button class="nav-item" data-view="depart">Enregistrer le départ d'un agent</button>
+          <button class="nav-item" data-view="encours">Voir les créations en cours</button>
+          <button class="nav-item" data-view="historique">Voir l'historique</button>
         <div class="brand">ES</div>
         <nav>
           <a class="nav-item active" href="#">Dashboard</a>
@@ -27,6 +41,124 @@
 
       <main class="main-content">
         <header class="topbar">
+          <div>
+            <h1>Dashboard RH / AG / IT</h1>
+            <p>Pilotage des entrées / sorties avec suivi des délais</p>
+          </div>
+          <div class="top-actions">
+            <input type="search" placeholder="Rechercher un agent, un service..." />
+            <button class="btn btn-secondary">Exporter CSV</button>
+            <button class="btn btn-primary">Créer une demande</button>
+          </div>
+        </header>
+
+        <section class="quick-stats">
+          <article class="kpi-card">
+            <h3>Délai moyen activation IT</h3>
+            <p class="kpi">+1,8 jours</p>
+            <span class="trend warning">+0,4 jour vs mois précédent</span>
+          </article>
+          <article class="kpi-card">
+            <h3>Demandes en retard</h3>
+            <p class="kpi">7</p>
+            <span class="trend danger">3 arrivées impactées cette semaine</span>
+          </article>
+          <article class="kpi-card">
+            <h3>Taux prêt le jour J</h3>
+            <p class="kpi">91%</p>
+            <span class="trend success">+6% grâce aux checklists</span>
+          </article>
+          <article class="kpi-card">
+            <h3>Sorties clôturées < 48h</h3>
+            <p class="kpi">84%</p>
+            <span class="trend success">Conforme à l'objectif sécurité</span>
+          </article>
+        </section>
+
+        <section class="view active" id="arrivee">
+          <div class="panel-grid">
+            <article class="card">
+              <h2>Nouvel arrivé</h2>
+              <p class="muted">Créer une demande d'onboarding complète.</p>
+              <form class="form-grid">
+                <label>Nom complet<input type="text" placeholder="Nom Prénom" /></label>
+                <label>Email pro<input type="email" placeholder="prenom.nom@entreprise.fr" /></label>
+                <label>Manager<input type="text" placeholder="Nom du manager" /></label>
+                <label>Date d'arrivée<input type="date" /></label>
+                <label>Service
+                  <select>
+                    <option>Informatique</option><option>RH</option><option>Affaires Générales</option>
+                  </select>
+                </label>
+                <label>Site / bureau<input type="text" placeholder="Site A - Bureau 2.14" /></label>
+              </form>
+            </article>
+
+            <article class="card">
+              <h2>Checklist automatique</h2>
+              <ul class="checklist">
+                <li><input type="checkbox" checked /> RH : création dossier salarié</li>
+                <li><input type="checkbox" /> AG : badge + clé + poste physique</li>
+                <li><input type="checkbox" /> IT : compte AD + poste + droits applicatifs</li>
+                <li><input type="checkbox" /> Validation manager avant J-3</li>
+              </ul>
+              <button class="btn btn-primary full">Enregistrer l'arrivée</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="depart">
+          <div class="panel-grid single">
+            <article class="card">
+              <h2>Départ d'un agent</h2>
+              <p class="muted">Planifier la sortie et sécuriser la restitution des accès.</p>
+              <form class="form-grid">
+                <label>Nom agent<input type="text" placeholder="Nom Prénom" /></label>
+                <label>Date de départ<input type="date" /></label>
+                <label>Motif
+                  <select><option>Fin de contrat</option><option>Mutation</option><option>Démission</option></select>
+                </label>
+                <label>Manager référent<input type="text" placeholder="Nom du manager" /></label>
+              </form>
+              <div class="tag-row">
+                <span class="tag">Désactivation AD J+0</span>
+                <span class="tag">Collecte matériel J+1</span>
+                <span class="tag">Clôture RH J+2</span>
+              </div>
+              <button class="btn btn-primary">Enregistrer le départ</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="encours">
+          <article class="card">
+            <h2>Créations en cours</h2>
+            <table>
+              <thead><tr><th>Agent</th><th>Type</th><th>Service bloquant</th><th>Retard</th><th>Statut</th></tr></thead>
+              <tbody>
+                <tr><td>Amine L.</td><td>Arrivée</td><td>IT</td><td>+2 jours</td><td><span class="badge progress">In progress</span></td></tr>
+                <tr><td>Claire M.</td><td>Arrivée</td><td>AG</td><td>+1 jour</td><td><span class="badge pending">Pending</span></td></tr>
+                <tr><td>Nadia R.</td><td>Départ</td><td>RH</td><td>0</td><td><span class="badge done">Done</span></td></tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+
+        <section class="view" id="historique">
+          <article class="card">
+            <h2>Historique des demandes</h2>
+            <ul class="history">
+              <li><strong>12/06</strong> — Arrivée validée pour Tere Merice (IT prêt en 24h)</li>
+              <li><strong>10/06</strong> — Départ clôturé pour Seir Dianch (accès coupés en 6h)</li>
+              <li><strong>08/06</strong> — Arrivée Satke Mah (retard badge +1 jour)</li>
+              <li><strong>05/06</strong> — Départ Noura B. (process complet en 36h)</li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
           <h1>Employee Lifecycle Management</h1>
           <div class="top-actions">
             <input type="search" placeholder="Rechercher un collaborateur" />
