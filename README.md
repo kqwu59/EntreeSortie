@@ -1,5 +1,13 @@
 # EntreeSortie
 
+Dashboard frontend propre (RH / AG / IT) pour la gestion des arrivées et départs.
+
+## Base actuelle
+
+- Sidebar classique avec icônes.
+- Topbar avec recherche.
+- KPI principaux en cartes.
+- Bloc **Actions rapides** avec les 4 boutons demandés :
 Base simple et propre d'un dashboard RH/AG/IT.
 
 ## Ce que contient cette version
@@ -20,6 +28,10 @@ Base frontend "dashboard classique stylé" pour la gestion des entrées/sorties.
   - Signaler un départ
   - Arrivées en cours
   - Arrivées terminées
+- Blocs d'information (suivi services + alertes).
+- Style print amélioré pour export PDF/JPEG plus lisible.
+
+## Lancer localement
 - Blocs de suivi et alertes.
 
 ## Lancer localement
