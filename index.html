@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EntreeSortie V2 — Dashboard Premium</title>
+    <title>EntreeSortie - Lifecycle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,6 +29,13 @@
           <button class="nav-item" data-view="depart">Enregistrer le départ d'un agent</button>
           <button class="nav-item" data-view="encours">Voir les créations en cours</button>
           <button class="nav-item" data-view="historique">Voir l'historique</button>
+        <div class="brand">ES</div>
+        <nav>
+          <a class="nav-item active" href="#">Dashboard</a>
+          <a class="nav-item" href="#">Nouveau entrant</a>
+          <a class="nav-item" href="#">Nouveau sortant</a>
+          <a class="nav-item" href="#">Départs</a>
+          <a class="nav-item" href="#">Paramètres</a>
         </nav>
       </aside>
 
@@ -151,5 +159,239 @@
     </div>
 
     <script src="app.js"></script>
+          <h1>Employee Lifecycle Management</h1>
+          <div class="top-actions">
+            <input type="search" placeholder="Rechercher un collaborateur" />
+            <button class="btn btn-secondary">Ajouter entrant</button>
+            <button class="btn btn-primary">Ajouter sortant</button>
+          </div>
+        </header>
+
+        <section class="grid-two">
+          <article class="card">
+            <h2>Détails collaborateur</h2>
+            <form class="employee-form">
+              <label>
+                Nom
+                <input type="text" placeholder="Nom et prénom" />
+              </label>
+              <label>
+                Email
+                <input type="email" placeholder="nom@entreprise.fr" />
+              </label>
+              <label>
+                Service
+                <select>
+                  <option>Ressources Humaines</option>
+                  <option>Affaires Générales</option>
+                  <option>Informatique</option>
+                </select>
+              </label>
+              <label>
+                Bureau
+                <input type="text" placeholder="Bâtiment / étage / bureau" />
+              </label>
+              <label>
+                Date d'arrivée
+                <input type="date" />
+              </label>
+              <label>
+                Date de départ
+                <input type="date" />
+              </label>
+            </form>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h2>Tâches Onboarding / Offboarding</h2>
+              <div class="tabs">
+                <button class="tab active">Onboarding</button>
+                <button class="tab">Départ</button>
+              </div>
+            </div>
+
+            <div class="task-group">
+              <h3>IT</h3>
+              <ul>
+                <li>
+                  <span>Créer le compte AD</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+                <li>
+                  <span>Préparer le poste et l'écran</span>
+                  <span class="badge progress">In progress</span>
+                </li>
+                <li>
+                  <span>Configurer les accès applicatifs</span>
+                  <span class="badge done">Done</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="task-group">
+              <h3>Affaires Générales</h3>
+              <ul>
+                <li>
+                  <span>Préparer bureau et mobilier</span>
+                  <span class="badge progress">In progress</span>
+                </li>
+                <li>
+                  <span>Badge + clé d'accès</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="task-group">
+              <h3>RH</h3>
+              <ul>
+                <li>
+                  <span>Créer dossier dans les outils RH</span>
+                  <span class="badge done">Done</span>
+                </li>
+                <li>
+                  <span>Valider date d'arrivée contractuelle</span>
+                  <span class="badge pending">Pending</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard">
+          <h2>Suivi d'avancement</h2>
+          <div class="stats-grid">
+            <article class="mini-card">
+              <h4>Tere Merice</h4>
+              <p>Service IT</p>
+              <div class="progressbar"><span style="width: 74%"></span></div>
+              <small>74% des tâches terminées</small>
+            </article>
+            <article class="mini-card">
+              <h4>Seir Dianch</h4>
+              <p>Service AG</p>
+              <div class="progressbar"><span style="width: 58%"></span></div>
+              <small>58% des tâches terminées</small>
+            </article>
+            <article class="mini-card">
+              <h4>Satke Mah</h4>
+              <p>Service RH</p>
+              <div class="progressbar"><span style="width: 92%"></span></div>
+              <small>92% des tâches terminées</small>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+    <title>EntreeSortie — Étape 1</title>
+    <link rel="stylesheet" href="styles.css?v=8" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="saved saved-priority" aria-labelledby="active-title">
+        <div class="saved-head">
+          <h2 id="active-title">Arrivées à traiter (en cours)</h2>
+          <button id="clear-storage" type="button" class="secondary">Vider la liste</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Service</th>
+                <th>Date arrivée</th>
+                <th>Date départ</th>
+                <th>Terminer l'arrivée</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="saved-body-active"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <form id="declaration-form" class="form-layout">
+        <input type="hidden" id="editingId" name="editingId" />
+
+        <fieldset class="stage stage-1">
+          <legend>Étape 1</legend>
+
+          <h2>Réservé SRH</h2>
+          <label>Nom
+            <input name="lastName" required />
+            <small>Nom de l'agent</small>
+          </label>
+          <label>Prénom
+            <input name="firstName" required />
+            <small>Prénom de l'agent</small>
+          </label>
+          <label>Email
+            <input name="email" type="email" required />
+            <small>L'adresse e-mail de l'agent</small>
+          </label>
+          <label>Service
+            <input name="department" required />
+            <small>Le service d'affectation de l'agent</small>
+          </label>
+          <label>Date arrivée
+            <input name="arrivalDate" type="date" required />
+            <small>Date d'arrivée prévue de l'agent</small>
+          </label>
+          <div class="departure-row">
+            <label>Date départ
+              <input name="departureDate" id="departureDate" type="date" />
+              <small>Date de départ prévue de l'agent</small>
+            </label>
+            <label class="check-inline">
+              <input type="checkbox" id="noDepartureDate" name="noDepartureDate" />
+              <span>Pas de date de fin</span>
+            </label>
+          </div>
+
+          <h2>Réservé CDS</h2>
+          <label>Bureau
+            <input name="office" />
+            <small>Le bureau de l'agent</small>
+          </label>
+          <label>Pôle
+            <input name="team" />
+            <small>Pôle dans le service</small>
+          </label>
+          <label>Fonction
+            <input name="role" />
+            <small>Responsable, adjoint, etc.</small>
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="submit-btn">Enregistrer</button>
+          <button type="button" id="cancel-edit" class="secondary hidden">Annuler la reprise</button>
+        </div>
+        <p id="form-feedback" class="feedback" aria-live="polite"></p>
+      </form>
+
+      <section class="saved" aria-labelledby="done-title">
+        <h3 id="done-title" class="list-title done">Historique des arrivées terminées</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Service</th>
+                <th>Date arrivée</th>
+                <th>Date départ</th>
+                <th>Terminer l'arrivée</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="saved-body-done"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js?v=8"></script>
   </body>
 </html>
