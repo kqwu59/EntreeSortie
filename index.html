@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntreeSortie — Dashboard</title>
     <title>EntreeSortie — Dashboard simple</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -160,6 +161,84 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-logo">ES</div>
+          <div>
+            <strong>EntreeSortie</strong>
+            <p>Lifecycle Dashboard</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="#" class="menu-item active">🏠 Tableau de bord</a>
+          <a href="#" class="menu-item">👤 Agents</a>
+          <a href="#" class="menu-item">📥 Arrivées</a>
+          <a href="#" class="menu-item">📤 Départs</a>
+          <a href="#" class="menu-item">⚙️ Paramètres</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar card">
+          <div>
+            <h1>Dashboard RH / AG / IT</h1>
+            <p>Gestion des nouveaux entrants et des départs</p>
+          </div>
+          <input type="search" placeholder="Rechercher un agent, un service..." />
+        </header>
+
+        <section class="kpis">
+          <article class="card kpi">
+            <h2>Délai moyen activation IT</h2>
+            <p>+1,8 jours</p>
+            <span class="warn">+0,4 jour vs mois précédent</span>
+          </article>
+          <article class="card kpi">
+            <h2>Demandes en retard</h2>
+            <p>7</p>
+            <span class="danger">3 dossiers critiques</span>
+          </article>
+          <article class="card kpi">
+            <h2>Taux prêt le jour J</h2>
+            <p>91%</p>
+            <span class="ok">+6% ce mois-ci</span>
+          </article>
+          <article class="card kpi">
+            <h2>Sorties clôturées &lt; 48h</h2>
+            <p>84%</p>
+            <span class="ok">Objectif presque atteint</span>
+          </article>
+        </section>
+
+        <section class="card actions-zone">
+          <h2>Actions rapides</h2>
+          <p>Base simple demandée : créez ou suivez vos flux en 1 clic.</p>
+          <div class="actions-grid">
+            <button class="action-btn primary">➕ Ajouter un nouvel agent / agente</button>
+            <button class="action-btn secondary">📤 Signaler un départ</button>
+            <button class="action-btn neutral">🕒 Arrivées en cours</button>
+            <button class="action-btn neutral">✅ Arrivées terminées</button>
+          </div>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="card">
+            <h3>Suivi par service</h3>
+            <ul>
+              <li>RH : 4 dossiers à traiter aujourd'hui</li>
+              <li>Affaires Générales : 2 badges en attente</li>
+              <li>Informatique : 3 postes à préparer</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Alertes</h3>
+            <ul>
+              <li>1 arrivée prévue demain sans badge généré.</li>
+              <li>2 départs attendent la désactivation AD.</li>
+              <li>1 dossier incomplet côté RH.</li>
     <div class="app-shell">
       <aside class="sidebar">
         <div class="brand-block">
