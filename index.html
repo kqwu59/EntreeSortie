@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EntreeSortie — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-logo">ES</div>
+          <div>
+            <h2>EntreeSortie</h2>
+            <p>Lifecycle Dashboard</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="#" class="active">🏠 Tableau de bord</a>
+          <a href="#">👥 Agents</a>
+          <a href="#">📥 Arrivées</a>
+          <a href="#">📤 Départs</a>
+          <a href="#">📊 KPI</a>
+          <a href="#">⚙️ Paramètres</a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="card topbar">
+          <div>
+            <h1>Dashboard RH / AG / IT</h1>
+            <p>Pilotage des entrées et des sorties</p>
+          </div>
+          <input type="search" placeholder="Rechercher un agent, un service..." />
+        </header>
+
+        <section class="kpi-grid">
+          <article class="card kpi">
+            <span>⏱️ Délai moyen activation IT</span>
+            <strong>+1,8 jours</strong>
+            <small class="warn">+0,4 vs mois précédent</small>
+          </article>
+          <article class="card kpi">
+            <span>🚨 Demandes en retard</span>
+            <strong>7 dossiers</strong>
+            <small class="danger">3 urgences cette semaine</small>
+          </article>
+          <article class="card kpi">
+            <span>✅ Taux prêt le jour J</span>
+            <strong>91%</strong>
+            <small class="ok">+6% ce mois-ci</small>
+          </article>
+          <article class="card kpi">
+            <span>🔒 Sorties clôturées &lt; 48h</span>
+            <strong>84%</strong>
+            <small class="ok">tendance positive</small>
+          </article>
+        </section>
+
+        <section class="card quick-actions">
+          <h3>Actions rapides</h3>
+          <div class="actions-grid">
+            <button class="btn primary">➕ Ajouter un nouvel agent / agente</button>
+            <button class="btn danger">📤 Signaler un départ</button>
+            <button class="btn neutral">🕒 Arrivées en cours</button>
+            <button class="btn neutral">✅ Arrivées terminées</button>
+          </div>
+        </section>
+
+        <section class="info-grid">
+          <article class="card">
+            <h3>Suivi services</h3>
+            <ul>
+              <li>RH : 4 créations en cours</li>
+              <li>Affaires Générales : 2 badges à préparer</li>
+              <li>Informatique : 3 postes à configurer</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Alertes</h3>
+            <ul>
+              <li>1 arrivée demain sans badge généré</li>
+              <li>2 départs avec désactivation AD en attente</li>
+              <li>1 dossier RH incomplet</li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
